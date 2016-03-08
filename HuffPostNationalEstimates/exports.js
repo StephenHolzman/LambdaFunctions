@@ -8,11 +8,11 @@ exports.handler = function(event, context){
     var requestUrls = [
         {
             "url":"http://elections.huffingtonpost.com/pollster/api/charts/2016-national-gop-primary.json",
-            "keyname":"reps/EstimatesGOP",
+            "keyname":"election/data/gop_national_estimates.csv",
             "choices":["Trump","Rubio","Cruz","Bush","Carson","Christie","Rand Paul","Fiorina","Kasich","Jindal"]
         },{
             "url":"http://elections.huffingtonpost.com/pollster/api/charts/2016-national-democratic-primary.json",
-            "keyname":"dems/EstimatesDEM",
+            "keyname":"election/data/dem_national_estimates.csv",
             "choices":["Sanders","Clinton"]
         }]
 
@@ -47,9 +47,14 @@ exports.handler = function(event, context){
             if (err) console.log(err);
 
             //Upload csv to S3
-            s3.createBucket({Bucket: 'HuffPoPollsterDump'}, function() {
+            s3.createBucket({Bucket: 'chartsoncharts.com'}, function() {
 
-                var params = {Bucket: 'HuffPoPollsterDump', Key: keyname, Body: csv}
+                var params = {
+                    Bucket: 'chartsoncharts.com',
+                    Key: keyname,
+                    Body: csv,
+                    ACL: 'public-read'
+                }
 
                 s3.putObject(params, function(err, data) {
 
