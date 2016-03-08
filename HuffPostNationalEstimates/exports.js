@@ -9,11 +9,11 @@ exports.handler = function(event, context){
         {
             "url":"http://elections.huffingtonpost.com/pollster/api/charts/2016-national-gop-primary.json",
             "keyname":"election/data/gop_national_estimates.csv",
-            "choices":["Trump","Rubio","Cruz","Bush","Carson","Christie","Rand Paul","Fiorina","Kasich","Jindal"]
+            "choices":["Trump","Cruz","Rubio","Kasich","Bush","Carson","Christie","Rand Paul","Fiorina","Jindal"]
         },{
             "url":"http://elections.huffingtonpost.com/pollster/api/charts/2016-national-democratic-primary.json",
             "keyname":"election/data/dem_national_estimates.csv",
-            "choices":["Sanders","Clinton"]
+            "choices":["Clinton","Sanders"]
         }]
 
     var partiesdone = 0;
